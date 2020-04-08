@@ -14,6 +14,7 @@ const getRandomCoordinates = () => {
 const initialeState = {
   direction: "RIGHT",
   speed: 200,
+  score: 0,
   food: getRandomCoordinates(),
   snakeDots: [
     [0, 0],
@@ -117,8 +118,10 @@ class App extends Component {
     let food = this.state.food;
     if (head[0] === food[0] && head[1] === food[1]) {
       //on met à jour la position de la nourriture avant sinon boucle infinie !
+      let newScore = this.state.score + 1;
       this.setState({
         food: getRandomCoordinates(),
+        score: newScore,
       });
       this.enlargeSnake();
       this.increaseSpeed();
@@ -145,7 +148,7 @@ class App extends Component {
 
   //Méthode game over
   onGameOver() {
-    alert(`Game Over ! Snake length is ${this.state.snakeDots.length}`);
+    alert(`Game Over !`);
     this.setState(initialeState);
   }
 
@@ -154,6 +157,7 @@ class App extends Component {
       <div className="game-area">
         <SnakeDot snakeDot={this.state.snakeDots} />
         <Food foodDot={this.state.food} />
+        <h3>{this.state.score}</h3>
       </div>
     );
   }
