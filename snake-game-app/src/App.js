@@ -158,7 +158,7 @@ class App extends Component {
       <div className="game-area">
         <SnakeDot snakeDot={this.state.snakeDots} />
         <Food foodDot={this.state.food} />
-        <h3>{this.state.score}</h3>
+        <h3>Score: {this.state.score}</h3>
       </div>
     );
   }
