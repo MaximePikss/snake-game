@@ -11,6 +11,7 @@ const getRandomCoordinates = () => {
   return [x, y];
 };
 
+//Condition de départ, au lancement du jeu
 const initialeState = {
   direction: "RIGHT",
   speed: 200,
@@ -84,7 +85,7 @@ class App extends Component {
     }
     //ajoute la nouvelle tête au snake
     dots.push(head);
-    //enlever les premières coordonnées = queue du snake
+    //retirer les premières coordonnées = queue du snake = premier élément d'un tableau
     dots.shift();
     //change le state
     this.setState({
@@ -131,7 +132,7 @@ class App extends Component {
   //Méthode pour faire grandir le snake lorsqu'il mange
   enlargeSnake() {
     let newSnake = [...this.state.snakeDots];
-    newSnake.unshift([]);
+    newSnake.unshift([]);// ajoute une case vide au début du tableau = à la fin du serpent
     this.setState({
       snakeDots: newSnake,
     });
@@ -141,7 +142,7 @@ class App extends Component {
   increaseSpeed() {
     if (this.state.speed > 10) {
       this.setState({
-        speed: this.state.speed - 10,
+        speed: this.state.speed - 10, // on enlève 10 car la vitesse est déterminé par un intervalle
       });
     }
   }
